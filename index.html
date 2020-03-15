@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>DataCards</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+		<script src="dataCards.js"></script>
+	</head>
+<body>
+ 
+	<div class="container">
+		<div id="dataCards">
+
+			<div class="card" style="width:400px">
+				<img class="card-img-top" src="https://banner2.cleanpng.com/20180920/yko/kisspng-computer-icons-portable-network-graphics-avatar-ic-5ba3c66df14d32.3051789815374598219884.jpg" alt="Card image" style="width:100%">
+				<div class="card-body">
+					<h4 class="card-title">John Doe</h4>
+					<p class="card-text">Some example text some example text. John Doe is an architect and engineer</p>
+					<a href="#" class="btn btn-primary">See Profile</a>
+				</div>
+			</div>
+
+		</div>
+	</div>
+	<button id="try" >Try</button>
+
+	<script>
+		// let myCards = {}
+		// $('#try').click(function(){
+			let dataCards = $('#dataCards').dataCards({
+				ajax: {
+					type: 'POST',
+					url: 'http://localhost:5000/get-books',
+					beforeSend: function (request) {
+						request.setRequestHeader("Authorization", "Negotiate");
+					},
+					dataType: "json",
+					success: function(data,status){
+						return data;
+					},
+					error: function(data,status){
+						alert('Ajax API Error');
+					},
+				},
+				fields: [
+					{
+						type: 'id',
+						data: 'book_id',
+					},
+					{
+						type: 'image',
+						name: 'Book Image',
+						data: 'book_image',
+						classNames: 'imga imgb',
+					},
+					{
+						type: 'title',
+						name: 'Book Title',
+						data: 'book_title',
+						classNames: 'classa classb',
+					},
+					{
+						type: 'sub_tile',
+						name: 'Sub Title 1',
+						data: 'book_sub_title_1',
+						classNames: 'classa classb',
+					},
+					{
+						type: 'sub_tile',
+						name: 'Sub Title 2',
+						data: 'book_sub_title_2',
+						classNames: 'classa classb',
+					},
+					{
+						type: 'description',
+						name: 'Description',
+						data: 'book_description',
+						classNames: 'classa classb',
+					},
+					{
+						type: 'button',
+						name: 'Oreder Now',
+						data: 'book_button_test',
+						classNames: 'btna btnb',
+					},
+				]
+			});
+		// })
+	</script>
+
+</body>
+</html>
